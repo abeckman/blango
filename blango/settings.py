@@ -49,6 +49,7 @@ class Dev(Configuration):
         'django.contrib.staticfiles',
         'crispy_forms',
         'crispy_bootstrap5',
+        "debug_toolbar",
         'blog',
     ]
 
@@ -60,6 +61,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
     #    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
 
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -182,6 +184,8 @@ class Dev(Configuration):
     }
 
     ADMINS = [("Art Beckman", "aabeckman@yahoo.com")]
+
+    INTERNAL_IPS = ["192.168.10.93"]
 
 class Prod(Dev):
     DEBUG = False

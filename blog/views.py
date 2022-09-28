@@ -4,8 +4,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from blog.forms import CommentForm
 import logging
 
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])
+
 logger = logging.getLogger(__name__)
 def index(request):
+  # posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
   posts = Post.objects.all #.filter(published_at__lte=timezone.now())
   # previous line having issues when published_at is null
   logger.debug("Got %d posts", len(posts()))
